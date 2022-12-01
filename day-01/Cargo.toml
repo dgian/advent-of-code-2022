@@ -1,0 +1,5 @@
+[package]
+name = "aoc-2022-day01"
+description = "Advent of Code 2022 - Day 01"
+version = "0.1.0"
+edition = "2021"
