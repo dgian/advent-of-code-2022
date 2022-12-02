@@ -59,7 +59,7 @@ fn main() {
     let sum: i16 = input.split("\n")
         .map(|s| s.split_whitespace().collect::<String>())
         .map(|s| GameForecast::from_str(s.as_str()))
-        .map(|c| eval_choice_forecast(c.expect("Could not parse combination")))
+        .map(|f| eval_choice_forecast(f.expect("Could not parse game forecast")))
         .sum();
 
     println!("Part 1 Sum = {}", sum);
@@ -68,7 +68,7 @@ fn main() {
     let sum: i16 = input.split("\n")
         .map(|s| s.split_whitespace().collect::<String>())
         .map(|s| GameForecast::from_str(s.as_str()))
-        .map(|c| eval_outcome_forecast(c.expect("Could not parse combination")))
+        .map(|f| eval_outcome_forecast(f.expect("Could not parse game forecast")))
         .sum();
 
     println!("Part 2 Sum = {}", sum);
