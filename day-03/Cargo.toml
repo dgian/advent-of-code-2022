@@ -1,0 +1,9 @@
+[package]
+name = "aoc-2022-day03"
+description = "Advent of Code 2022 - Day 03"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+array_tool = "1.0.3"
+itertools = "0.10.5"
