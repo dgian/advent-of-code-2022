@@ -5,21 +5,21 @@ use array_tool::vec::Intersect;
 fn main() {
     let input = fs::read_to_string("input.txt").expect("Could not read input file");
     
-    let ranges: Vec<_> = 
+    let range_pairs: Vec<_> = 
         input.lines()
             .map(|s| parse_input(s, ","))
             .map(|(left, right)| parse_range_pair((left, right), "-"))
             .collect();
 
     // Part1
-    let p1: Vec<_> = ranges.iter()
+    let p1: Vec<_> = range_pairs.iter()
         .filter(|(left, right)| contains_fully(&left, &right) || contains_fully(&right, &left))
         .collect();
     
     println!("Part1 count: {}", p1.len());
 
     // Part2
-    let p2: Vec<_> = ranges.iter()
+    let p2: Vec<_> = range_pairs.iter()
         .filter(|(left, right)| !left.intersect(right.clone()).is_empty())
         .collect();
     
