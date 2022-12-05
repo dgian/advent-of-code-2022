@@ -23,7 +23,7 @@ struct CraneHandler(Vec<Vec<char>>, CommandList);
 
 impl CraneHandler {
     fn from_crates_and_commands(crates: &str, cmd_list: CommandList) -> CraneHandler {
-        let mut buckets: Vec<Vec<char>> = vec![vec![]; crates.lines().count()];
+        let mut crate_stacks: Vec<Vec<char>> = vec![vec![]; crates.lines().count()];
 
         crates.lines()
             .rev()
@@ -39,12 +39,12 @@ impl CraneHandler {
                 line.chars().into_iter().enumerate()
                     .for_each(|(i, c)| {
                         if !c.is_whitespace() {
-                            buckets[i].push(c);
+                            crate_stacks[i].push(c);
                         }
                     });
             });
 
-        CraneHandler(buckets, cmd_list)
+        CraneHandler(crate_stacks, cmd_list)
     }
 
     fn top_crates(&self) -> Vec<char> {
