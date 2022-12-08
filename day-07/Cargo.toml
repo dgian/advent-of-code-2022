@@ -1,0 +1,8 @@
+[package]
+name = "aoc-2022-day07"
+description = "Advent of Code 2022 - Day 07"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+regex = "1.7.0"
