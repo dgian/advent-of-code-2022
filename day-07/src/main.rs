@@ -23,8 +23,8 @@ fn main() {
             )
             .or_else(|| cd_up.find(line).map(
                 |_| disk_drive.change_dir_up()
-            )).
-            or_else(|| file_entry.captures(line).map(
+            ))
+            .or_else(|| file_entry.captures(line).map(
                 |cmd| {
                     let size = cmd.get(1)
                         .expect("Could not parse file cmd output")
