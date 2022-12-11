@@ -3,8 +3,12 @@ use std::{fs, collections::HashSet, cmp};
 
 fn main() {
     let input = fs::read_to_string("input.txt").expect("Could not read input file");
-    let head = Node(Coordinate(0, 0), HashSet::from([Coordinate(0,0)]), "head".into());
-    let mut rope = Rope::new(head, 9);
+    let mut short_rope = Rope::new(
+        Node(Coordinate(0,0), HashSet::from([Coordinate(0, 0)]), "head".into()), 1
+    );
+    let mut long_rope = Rope::new(
+        Node(Coordinate(0, 0), HashSet::from([Coordinate(0,0)]), "head".into()), 9
+    );
 
     input.lines()
         .for_each(|line| {
@@ -12,15 +16,28 @@ fn main() {
             let steps = steps.replace(" ", "").parse().unwrap();
             
             match movement {
-                "R" | "r" => rope.move_n_to(steps, Direction::East),
-                "L" | "l" => rope.move_n_to(steps, Direction::West),
-                "U" | "u" => rope.move_n_to(steps, Direction::North),
-                "D" | "d" => rope.move_n_to(steps, Direction::South),
+                "R" | "r" => {
+                    short_rope.move_n_to(steps, Direction::East);
+                    long_rope.move_n_to(steps, Direction::East);
+                },
+                "L" | "l" => {
+                    short_rope.move_n_to(steps, Direction::West);
+                    long_rope.move_n_to(steps, Direction::West);
+                },
+                "U" | "u" => {
+                    short_rope.move_n_to(steps, Direction::North);
+                    long_rope.move_n_to(steps, Direction::North);
+                },
+                "D" | "d" => {
+                    short_rope.move_n_to(steps, Direction::South);
+                    long_rope.move_n_to(steps, Direction::South);
+                },
                 _ => panic!("PANIC")
             };
         });
-        
-    println!("Number of nodes that the tail has been {}", rope.get_node(9).1.len());
+    
+    println!("\nPart 1: Number of nodes that the tail has been {}", short_rope.get_node(1).1.len());
+    println!("\nPart 2: Number of nodes that the tail has been {}", long_rope.get_node(9).1.len());
 }
 
 struct Rope {
